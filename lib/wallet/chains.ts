@@ -7,6 +7,7 @@ import {
   sepolia,
   type Chain,
 } from "viem/chains"
+import { fallback, http } from "viem"
 
 export type SupportedChain = {
   chain: Chain
@@ -37,10 +38,36 @@ export function getSupportedChain(chainId: number) {
   return SUPPORTED_CHAINS.find((item) => item.chain.id === chainId)
 }
 
+export const PUBLIC_RPCS: Record<number, string[]> = {
+  [sepolia.id]: [
+    "https://ethereum-sepolia-rpc.publicnode.com",
+    "https://1rpc.io/sepolia",
+    "https://sepolia.gateway.tenderly.co",
+  ],
+  [mainnet.id]: ["https://ethereum-rpc.publicnode.com", "https://1rpc.io/eth"],
+  [base.id]: ["https://base-rpc.publicnode.com", "https://mainnet.base.org"],
+  [arbitrum.id]: ["https://arbitrum-one-rpc.publicnode.com", "https://arb1.arbitrum.io/rpc"],
+  [optimism.id]: ["https://optimism-rpc.publicnode.com", "https://mainnet.optimism.io"],
+  [polygon.id]: ["https://polygon-bor-rpc.publicnode.com", "https://polygon-rpc.com"],
+}
+
 export function getRpcUrl(chainId: number, customRpcs: Record<number, string> = {}) {
   if (customRpcs[chainId]) return customRpcs[chainId]
-  const match = getSupportedChain(chainId)
-  return match?.chain.rpcUrls.default.http[0]
+  return PUBLIC_RPCS[chainId]?.[0] ?? getSupportedChain(chainId)?.chain.rpcUrls.default.http[0]
+}
+
+export function getRpcUrls(chainId: number, customRpcs: Record<number, string> = {}) {
+  const custom = customRpcs[chainId]
+  const fallbacks = PUBLIC_RPCS[chainId] ?? []
+  const defaults = getSupportedChain(chainId)?.chain.rpcUrls.default.http ?? []
+  return [...new Set([custom, ...fallbacks, ...defaults].filter(Boolean) as string[])]
+}
+
+export function createRpcTransport(chainId: number, customRpcs: Record<number, string> = {}) {
+  const urls = getRpcUrls(chainId, customRpcs)
+  if (urls.length === 0) return http(undefined, { timeout: 12_000 })
+  if (urls.length === 1) return http(urls[0], { timeout: 12_000 })
+  return fallback(urls.map((url) => http(url, { timeout: 12_000 })))
 }
 
 export const SELECT_CHAIN_ITEMS = SUPPORTED_CHAINS.map((item) => ({

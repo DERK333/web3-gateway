@@ -13,7 +13,6 @@ import {
 import {
   createPublicClient,
   createWalletClient,
-  http,
   hexToBigInt,
   isAddress,
   isHex,
@@ -24,9 +23,8 @@ import {
 import { encryptSecret, decryptSecret } from "@/lib/wallet/crypto"
 import {
   DEFAULT_CHAIN_ID,
-  getRpcUrl,
+  createRpcTransport,
   getSupportedChain,
-  SUPPORTED_CHAINS,
 } from "@/lib/wallet/chains"
 import { deriveAccounts, getSigner } from "@/lib/wallet/hd"
 import { chainIdHex, messageFromHex, parseChainId } from "@/lib/wallet/format"
@@ -171,11 +169,10 @@ export function WalletProvider({ children }: { children: ReactNode }) {
   const isTestnet = Boolean(chainInfo?.testnet)
 
   const publicClient = useMemo(() => {
-    const rpc = getRpcUrl(chainId, customRpcs)
     const chain = chainInfo?.chain ?? getSupportedChain(DEFAULT_CHAIN_ID)!.chain
     return createPublicClient({
       chain,
-      transport: http(rpc),
+      transport: createRpcTransport(chainId, customRpcs),
     })
   }, [chainId, chainInfo, customRpcs])
 
@@ -192,7 +189,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     return createWalletClient({
       account: getSigner(phrase, account.index),
       chain,
-      transport: http(getRpcUrl(chainIdRef.current, customRpcsRef.current)),
+      transport: createRpcTransport(chainIdRef.current, customRpcsRef.current),
     })
   }, [])
 

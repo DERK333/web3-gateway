@@ -18,7 +18,6 @@ import { QRCodeSVG } from "qrcode.react"
 import {
   createPublicClient,
   erc20Abi,
-  http,
   isAddress,
   parseEther,
 } from "viem"
@@ -59,7 +58,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Identicon } from "@/components/wallet/identicon"
 import { PasswordField } from "@/components/wallet/password-field"
 import {
-  getRpcUrl,
+  createRpcTransport,
   getSupportedChain,
   SELECT_CHAIN_ITEMS,
   USDC_ADDRESSES,
@@ -351,7 +350,7 @@ function useBalances() {
           if (!chain) return
           const client = createPublicClient({
             chain,
-            transport: http(getRpcUrl(chainId, customRpcs)),
+            transport: createRpcTransport(chainId, customRpcs),
           })
           const value = await client.readContract({
             address: token,
