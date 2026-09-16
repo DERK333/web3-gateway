@@ -195,7 +195,7 @@ export function DappBrowser({ urlBarRef }: DappBrowserProps) {
             <HouseIcon />
           </Button>
         </div>
-        <div className="hidden items-center gap-2 text-xs text-muted-foreground landscape:flex lg:hidden">
+        <div className="hidden items-center gap-2 text-xs text-muted-foreground max-lg:landscape:flex">
           <RotateCwSquareIcon />
           Widescreen · wallet sits beside this browser. Hide it for a full-width page.
         </div>
@@ -285,7 +285,7 @@ function BrowserHome({ onOpen }: { onOpen: (href: string) => void }) {
           Wallet and Browser tabs at the bottom.
         </AlertDescription>
       </Alert>
-      <Alert className="hidden landscape:flex lg:hidden">
+      <Alert className="hidden max-lg:landscape:flex">
         <RotateCwSquareIcon />
         <AlertTitle>Widescreen mode</AlertTitle>
         <AlertDescription>
