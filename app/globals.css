@@ -3,6 +3,8 @@
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant portrait (@media (orientation: portrait));
+@custom-variant landscape (@media (orientation: landscape));
 
 @theme inline {
     --font-heading: var(--font-sans);
@@ -126,4 +128,8 @@
   html {
     @apply font-sans;
     }
+  html,
+  body {
+    min-height: 100dvh;
+  }
 }

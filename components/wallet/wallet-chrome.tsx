@@ -228,6 +228,14 @@ function Home({ onSend, onReceive }: { onSend: () => void; onReceive: () => void
             <ArrowDownLeftIcon data-icon="inline-start" />
             Receive
           </Button>
+          <Button
+            className="flex-1"
+            variant="outline"
+            onClick={() => window.dispatchEvent(new CustomEvent("ember:open-browser"))}
+          >
+            <GlobeIcon data-icon="inline-start" />
+            Browser
+          </Button>
         </div>
       </div>
       <Tabs value={tab} onValueChange={setTab} className="min-h-0 flex-1 px-4 pb-4">

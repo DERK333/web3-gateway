@@ -11,12 +11,13 @@ npm install
 npm run dev -- --port 43173
 ```
 
-Open [http://localhost:43173](http://localhost:43173). The left pane is a demo dApp (Hearth Swap). The right pane is Ember.
+Open [http://localhost:43173](http://localhost:43173). Portrait phones use **Wallet** and **Browser** tabs. Rotate sideways for a widescreen split: dApp browser on the left, Ember on the right.
 
 1. Create a wallet or import a 12-word phrase.
 2. Unlock Ember.
-3. In Hearth Swap, click **Connect Ember** and confirm in the wallet.
-4. Sign in, sign a swap order, or send a zero-value self-check transaction.
+3. Open **Browser** (or rotate the phone).
+4. Open **Hearth Swap** and click **Connect Ember**.
+5. Sign in, sign a swap order, or send a zero-value self-check transaction.
 
 Default network is **Sepolia**. Switch networks from the wallet header.
 
@@ -29,7 +30,7 @@ Default network is **Sepolia**. Switch networks from the wallet header.
 - Native send, receive QR, token balances (ETH + USDC)
 - EIP-1193 `window.ethereum` + EIP-6963 announce so dApps can find Ember
 - Connect, `personal_sign`, EIP-712 typed data, `eth_sendTransaction`, `wallet_switchEthereumChain`
-- Activity list with explorer links
+- In-app dApp browser with bookmarks; landscape (phone rotated sideways) shows a widescreen browser + wallet split
 
 ## Safety
 

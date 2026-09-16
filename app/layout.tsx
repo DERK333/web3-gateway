@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 
 import "./globals.css"
@@ -16,6 +16,16 @@ export const metadata: Metadata = {
   title: "Ember — Browser Ethereum wallet",
   description:
     "Create or import a 12-word recovery phrase, then sign and send from a MetaMask-style wallet that stays in your browser.",
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fff7ed" },
+    { media: "(prefers-color-scheme: dark)", color: "#1c1410" },
+  ],
 }
 
 export default function RootLayout({
