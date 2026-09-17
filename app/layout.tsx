@@ -16,6 +16,12 @@ export const metadata: Metadata = {
   title: "Ember — Browser Ethereum wallet",
   description:
     "Create or import a 12-word recovery phrase, then sign and send from a MetaMask-style wallet that stays in your browser.",
+  applicationName: "Ember",
+  appleWebApp: {
+    capable: true,
+    title: "Ember",
+    statusBarStyle: "black-translucent",
+  },
 }
 
 export const viewport: Viewport = {
