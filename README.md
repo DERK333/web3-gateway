@@ -21,35 +21,14 @@ Open [http://localhost:43173](http://localhost:43173). Portrait phones use **Wal
 
 ## Install on a phone
 
-Ember is a website you add to the home screen, not an App Store or Play Store app. The wallet needs **HTTPS** (Web Crypto will not run on a plain `http://192.168.x.x` address).
+Ember installs as a **home-screen app** (PWA). It is not in the App Store or Play Store. Host it on **HTTPS** first — wallet encryption will not run on a plain `http://192.168.x.x` page.
 
-### 1. Put it on HTTPS
+1. Publish the site (Vercel from this repo), or `npm run build && npm start` behind HTTPS.
+2. Open the `https://` URL on the phone.
+3. Tap **Install app** in Ember when Chrome offers it.
+4. On iPhone, use **Safari** → **Share** → **Add to Home Screen**.
 
-Publish the app (Vercel from this repo is the straightforward path), or run a production build behind HTTPS.
-
-```bash
-origin repo clone derk333/web3-gateway
-cd web3-gateway
-npm install
-npm run build
-npm start
-```
-
-Then open the HTTPS URL on the phone.
-
-### 2. Add it to the home screen
-
-**iPhone (Safari)**
-1. Open the Ember URL in Safari (Chrome’s “Add to Home Screen” will not install a standalone app on iOS).
-2. Tap **Share** → **Add to Home Screen** → **Add**.
-3. Open **Ember** from the home screen. Rotate the phone for the widescreen browser.
-
-**Android (Chrome)**
-1. Open the Ember URL in Chrome.
-2. Tap the menu → **Install app** or **Add to Home Screen**.
-3. Open **Ember** from the app drawer or home screen.
-
-The vault lives in that browser profile on the phone. Clearing site data deletes the encrypted wallet. Treat it like a test wallet.
+Installed Ember opens full-screen. Rotate the phone for the widescreen dApp browser.
 
 ## What it does
 

@@ -5,6 +5,7 @@ import { Onboarding } from "@/components/wallet/onboarding"
 import { Unlock } from "@/components/wallet/unlock"
 import { ApprovalDialog } from "@/components/wallet/approval-dialog"
 import { EmberMark } from "@/components/wallet/ember-mark"
+import { InstallApp } from "@/components/pwa/install-app"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useWallet } from "@/lib/wallet/wallet-context"
 
@@ -27,6 +28,7 @@ export function WalletPanel() {
       {status === "welcome" ? <Onboarding /> : null}
       {status === "locked" ? <Unlock /> : null}
       {status === "unlocked" ? <WalletChrome /> : null}
+      <InstallApp />
       <ApprovalDialog />
     </div>
   )
