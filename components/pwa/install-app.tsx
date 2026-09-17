@@ -82,14 +82,14 @@ export function InstallApp() {
           </Button>
         </AlertAction>
       </Alert>
-      <div className="mt-2 flex gap-2">
-        {promptEvent ? (
+      {promptEvent ? (
+        <div className="mt-2 flex gap-2">
           <Button className="flex-1" onClick={() => void install()}>
             <DownloadIcon data-icon="inline-start" />
             Install app
           </Button>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
     </div>
   )
 }
