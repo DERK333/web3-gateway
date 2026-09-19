@@ -1,0 +1,11 @@
+{
+  "name": "Ember",
+  "install": "npm ci",
+  "terminals": [
+    {
+      "name": "dev",
+      "command": "npm run dev"
+    }
+  ],
+  "ports": [43173]
+}
